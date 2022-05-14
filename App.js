@@ -3,15 +3,15 @@ import { StyleSheet } from 'react-native';
 import Navigation from './navigation/Navigation';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider} from '@ui-kitten/components';
+import * as Notifications from "expo-notifications";
 
 
 export default function App() {
+  
   return (
     <ApplicationProvider {...eva} theme={eva.light}>
     <Navigation/>
     </ApplicationProvider>
-
-
   );
 }
 

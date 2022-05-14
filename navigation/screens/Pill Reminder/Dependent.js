@@ -32,7 +32,6 @@ export default function Dependent({ navigation }) {
 
   React.useEffect(() => {
     getDepList();
-    console.log(listDep);
   }, []);
 
   const getDepList = async () => {
@@ -40,7 +39,6 @@ export default function Dependent({ navigation }) {
       const depList = await AsyncStorage.getItem("depList");
       if (depList != null) {
         setDepList(JSON.parse(depList));
-        console.log(listDep);
       }
     } catch (error) {
       console.log(error);

@@ -17,7 +17,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function PillReminder({navigation}) {
+export default function PillReminder({ navigation }) {
   const route = useRoute();
 
   let dep_name = route.params.dep_name;
@@ -25,6 +25,7 @@ export default function PillReminder({navigation}) {
   let listDep = route.params.listDep;
   let setDepList = route.params.setDepList;
   let i = route.params.index;
+  console.log("+");
   console.log(listDep[i].dep_med);
 
   React.useEffect(() => {
@@ -59,14 +60,14 @@ export default function PillReminder({navigation}) {
       dep_name: dep_name,
       dep_id: dep_id,
       listDep: listDep,
-      setDepList:setDepList,
+      setDepList: setDepList,
+      index: i,
     });
   };
-  
-  
+
   const renderItem = ({ item, index }) => (
     <ListItem
-      title={`${item.med_id}`}
+      title={`${item.med_name}`}
       description={`${item.how_times} times per day`}
       accessoryRight={() => renderItemAccessory(item.med_id)}
     />
@@ -87,13 +88,14 @@ export default function PillReminder({navigation}) {
       },
     ]);
   };
+ 
+
   const onDeleteHandler = key => {
-    const newData = listDep.map(item => ({
+    setDepList(listDep=> listDep.map(listDep => ({
         ...listDep,
-        dep_med: listDep[i].dep_med.filter(item => item.med_id !== key)
+        dep_med: listDep.dep_med.filter(item => item.med_id !== key)
       })
-    );
-    setDepList(newData);
+    ));
   };
   return (
     <View style={styles.container}>
